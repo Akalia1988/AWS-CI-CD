@@ -33,17 +33,29 @@ Click Create build project
 Fill up the information however it meets YOUR own requirements or use snip below as an example.
 
 Project name: ca-app-Arsh
+
 Source provider: AWS CodeCommit (notice Amazon S3 and Github are also supported)
+
 Repository: ca-app (your exact repository name will appear in the drop-down menu)
+
 Branch: master
+
 Environment image: Managed image
+
 Operating System: Ubuntu
+
 Runtime: Standard
+
 Image: aws/codebuild/standard:5.0
+
 Image Version: Always use the latest image for this runtime version
+
 Service role: Existing service role
+
 Role name: codebuild-app-role
+
 Allow AWS CodeBuild to modify this service role so it can be used with this build project: unchecked
+
 Build specification: Use a buildspec file
 
 buildspec.yaml
@@ -106,7 +118,9 @@ Please take a look at AppSpec.yaml file Every application needs an appspec.yml f
 It is a YAML file. The os can be set to linux or windows. The files section tells AWS CodeDeploy where to copy files from the build artifact bundle it receives. You can use the permissions section to change the file permissions of any file in the artifact bundle. Lastly, the hooks section allows you to run scripts at different life cycle events in a deployment. The life cycle events can trigger any arbitrary commands. The scripts your app has configured for different life cycle events are as follows:
 
 ApplicationStop: Stops any running instance of the server
+
 ApplicationStart: Starts running the server in production mode
+
 ValidateService: Checks that the server responds to requests on port 8080
 
 
@@ -115,15 +129,21 @@ Lets Create blue-green deployment group as well
 Enter the following values in the wizard:
 
 Deployment group name: blue-green
+
 Service role: codedeploy-ca-app-role
+
 Deployment type: Blue/green
+
 Environment configuration: Automatically copy Amazon EC2 Auto Scaling group
+
 Select the only auto scaling group (It will contain ProdAutoScalingGroup in the name)
  
 In Deployment settings, set the following:
 
 Select Reroute traffic immediately. Traffic rerouting allows you to choose when traffic gets rerouted.
+
 Select Keep the original instances in the deployment group running. This will keep the instances running in case you need to roll back. If you planned to keep the instances for some time, you would establish a policy for how long to keep them running.
+
 Set the Deployment configuration to CodeDeployDefault.OneAtATime.
 
 ![image](https://user-images.githubusercontent.com/58148717/121226442-2e05c100-c850-11eb-8b76-b104b0eed365.png)
@@ -146,9 +166,13 @@ In the Production stage, click + Add action group.
 In the Edit action form, enter the following:
 
 Action name: CodeDeploy
+
 Action provider: Deploy > AWS CodeDeploy
+
 Input artifacts: BuildArtifact
+
 Application name: ca-app 
+
 Deployment group: in-place
 
 ![image](https://user-images.githubusercontent.com/58148717/121227111-d9af1100-c850-11eb-86ce-b373d134b112.png)
