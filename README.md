@@ -1,6 +1,9 @@
 # AWS-CI-CD
 Continuous Integration and Deployment with AWS Code Services
 
+We will Cover CodeCommit, CodeBuild, CodeDeploy and CodePipeline
+
+
 In the AWS Management Console search bar, enter CodeCommit, and click the CodeCommit result under Services
 
 ![image](https://user-images.githubusercontent.com/58148717/121222713-673c3200-c84c-11eb-9df8-a89a16c367b1.png)
